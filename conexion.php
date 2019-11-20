@@ -20,18 +20,18 @@ class Conexion {
     		return self::$instancia;
 	}
 	
-	public function getConnection() {
+	public function getConexion() {
 		return $this->conn;
 	}
 }
 //creamos 3 objetos para conectarmos a la base de datos, aunque solamente se conectara 1 vez debido a que usamos el patron de diseño singleton con PDO
 $instancia = Conexion::getInstancia();
-$conn = $instancia->getConnection();
+$conn = $instancia->getConexion();
 var_dump($conn);
 $instancia = Conexion::getInstancia();
-$conn = $instancia->getConnection();
+$conn = $instancia->getConexion();
 var_dump($conn);
 $instancia = Conexion::getInstancia();
-$conn = $instancia->getConnection();
+$conn = $instancia->getConexion();
 var_dump($conn);
 ?>
