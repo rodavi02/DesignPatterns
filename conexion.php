@@ -1,16 +1,16 @@
 <?php
 class Conexion {
   // creamos la instancia
-	public static $instancia = null;
-	public $conn;
-	public $host = 'localhost';
-	public $usuario = 'administrador';
-	public $pass = 'administrador';
-	public $dbname = 'tienda';
+	private static $instancia = null;
+	private $conn;
+	private $host = 'localhost';
+	private $usuario = 'administrador';
+	private $pass = 'administrador';
+	private $dbname = 'tienda';
+	#private $puerto='3344';
 	
 	public function __construct() {
-    		$this->conn = new PDO("mysql:host={$this->host};
-    		dbname={$this->dbname}", $this->usuario,$this->pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+    		$this->conn = new PDO("mysql:host={$this->host}; /*port={$this->puerto}; */dbname={$this->dbname}", $this->usuario, $this->pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
     	}
 	
   	public static function getInstancia() {
