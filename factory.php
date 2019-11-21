@@ -6,17 +6,18 @@
 <body>
 <?php
 class Prenda {
+	static public $ultimoNombre = 0;
 	protected $nombre;
 	protected $talla;
 	protected $color;
 	protected $estilo;
 
-	public static function crear($tipo, $nombre, $talla, $color, $estilo) {
+	public static function crear($tipo, $talla, $color, $estilo) {
 		switch ($tipo) {
 			case 'Camiseta':
-				return new Camiseta($nombre, $talla, $color, $estilo);
+				return new Camiseta($talla, $color, $estilo);
 			case 'Pantalon':
-				return new Pantalon($nombre, $talla, $color, $estilo);
+				return new Pantalon($talla, $color, $estilo);
 			default:
 				return ('No se ha encontrado la prenda. Debe introducir \'Camiseta\' o \'Pantalon\'<br>');
 		}
@@ -60,8 +61,9 @@ class Prenda {
 }
 
 	class Camiseta extends Prenda {
-		public function __construct($nombre, $talla, $color) {
-			$this->nombre=$nombre;
+		public function __construct($talla, $color) {
+			self::$ultimoNombre += 1;
+			$this->nombre=self::$ultimoNombre;
 			$this->talla=$talla;
 			$this->color=$color;
 		}
@@ -72,8 +74,8 @@ class Prenda {
 	}
 
 	class MangaCorta extends Camiseta {
-		public function __construct($nombre, $talla, $color) {
-			parent::__construct($nombre, $talla, $color);
+		public function __construct($talla, $color) {
+			parent::__construct($talla, $color);
 			$this->estilo='Corta';
 		}
 
@@ -82,13 +84,14 @@ class Prenda {
 		}
 
 		public function __clone() {
+			$this->nombre += 1;
 			$this->estilo='Corta';
 		}
 	}
 
 	class MangaLarga extends Camiseta {
-		public function __construct($nombre, $talla, $color) {
-			parent::__construct($nombre, $talla, $color);
+		public function __construct($talla, $color) {
+			parent::__construct($talla, $color);
 			$this->estilo='Larga';
 		}
 
@@ -96,14 +99,16 @@ class Prenda {
 			return $this->getTipo().": Nombre -> ".$this->getNombre().". Talla -> ".$this->getTalla().". Color -> ".$this->getColor().". Manga -> ".$this->getEstilo().".<br>";
 		}
 
-		public function __clone() {	
+		public function __clone() {
+			$this->nombre += 1;
 			$this->estilo='Larga';
 		}
 	}
 
 	class Pantalon extends Prenda {
-		public function __construct($nombre, $talla, $color) {
-			$this->nombre=$nombre;
+		public function __construct($talla, $color) {
+			self::$ultimoNombre += 1;
+			$this->nombre=self::$ultimoNombre;
 			$this->talla=$talla;
 			$this->color=$color;
 		}
@@ -114,8 +119,8 @@ class Prenda {
 	}
 
 	class EstiloCorto extends Pantalon {
-		public function __construct($nombre, $talla, $color) {
-			parent::__construct($nombre, $talla, $color);
+		public function __construct($talla, $color) {
+			parent::__construct($talla, $color);
 			$this->estilo='Corto';
 		}
 
@@ -124,13 +129,14 @@ class Prenda {
 		}
 
 		public function __clone() {
+			$this->nombre += 1;
 			$this->estilo='Corto';
 		}
 	}
 
 	class EstiloLargo extends Pantalon {
-		public function __construct($nombre, $talla, $color) {
-			parent::__construct($nombre, $talla, $color);
+		public function __construct($talla, $color) {
+			parent::__construct($talla, $color);
 			$this->estilo='Largo';
 		}
 
@@ -139,6 +145,7 @@ class Prenda {
 		}
 
 		public function __clone() {
+			$this->nombre += 1;
 			$this->estilo='Largo';	
 		}
 	}
