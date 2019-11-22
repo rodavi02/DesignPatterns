@@ -13,38 +13,30 @@ cp INT(5) NOT NULL,
 provincia VARCHAR(40) NOT NULL
 );
 
-CREATE TABLE prenda (
-nombre INT NOT NULL PRIMARY KEY,
-precio INT NOT NULL
-);
-
 CREATE TABLE camiseta (
-nombre INT NOT NULL PRIMARY KEY auto_increment,
+nombre int NOT NULL PRIMARY KEY auto_increment,
 talla VARCHAR(3) NOT NULL,
 color VARCHAR(15) NOT NULL,
 manga VARCHAR(5) NOT NULL,
-KEY (nombre),
-FOREIGN KEY (nombre) REFERENCES prenda (nombre) ON UPDATE CASCADE ON DELETE CASCADE
+key (nombre)
 );
 
 CREATE TABLE pantalon (
-nombre INT NOT NULL PRIMARY KEY auto_increment,
+nombre int NOT NULL PRIMARY KEY auto_increment,
 talla VARCHAR(3) NOT NULL,
 color VARCHAR(15) NOT NULL,
 tipo VARCHAR(15) NOT NULL,
 design VARCHAR(5) NOT NULL,
-KEY (nombre),
-FOREIGN KEY (nombre) REFERENCES prenda (nombre) ON UPDATE CASCADE ON DELETE CASCADE
+key (nombre)
 );
 
 CREATE TABLE pedido (
 idpedido INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 fecha DATE NOT NULL,
-nombre INT NOT NULL ,
 id INT NOT NULL,
-KEY (nombre),
-FOREIGN KEY (nombre) REFERENCES prenda (nombre) ON UPDATE CASCADE ON DELETE CASCADE,
 KEY (id),
 FOREIGN KEY (id) REFERENCES cliente (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
+drop user 'administrador'@'localhost';
+create user 'administrador'@'localhost' identified by 'administrador';
+grant all privileges on tienda to 'administrador'@'localhost';
