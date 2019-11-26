@@ -17,8 +17,7 @@ CREATE TABLE camiseta (
 nombre int NOT NULL PRIMARY KEY auto_increment,
 talla VARCHAR(3) NOT NULL,
 color VARCHAR(15) NOT NULL,
-manga VARCHAR(5) NOT NULL,
-key (nombre)
+manga VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE pantalon (
@@ -26,8 +25,7 @@ nombre int NOT NULL PRIMARY KEY auto_increment,
 talla VARCHAR(3) NOT NULL,
 color VARCHAR(15) NOT NULL,
 tipo VARCHAR(15) NOT NULL,
-design VARCHAR(5) NOT NULL,
-key (nombre)
+design VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE pedido (
